@@ -1,0 +1,18 @@
+<!--day.wxml-->
+<view class="page">
+  <!--列表页头-->
+  <include src="./base/list_header.wxml"/>
+
+  <!-- 记账入口按钮 这一天还没有记账哦-->
+  <import src="./base/list_account.wxml"/>
+  <template wx:if="{{isAddData}}" is="account_button" data="{{text: '这一天还没有记账哦'}}" />
+
+  <!--列表页账单-->
+  <template is="account_list" data="{{arrList: arrList, isHiddenFunds: isHiddenFunds}}" />
+
+  <view class="view-loading">
+    <image wx:if="{{isLoadMore}}" class="image-loading" src="../../image/loading.gif"></image>
+    <button wx:else class="weui-btn" type="default" bindtap="bindLoadMore">更多账单</button>
+  </view>
+
+</view>

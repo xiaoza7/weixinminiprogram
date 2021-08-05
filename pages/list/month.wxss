@@ -1,0 +1,2 @@
+/* month.wxss */
+@import './base/list.wxss';

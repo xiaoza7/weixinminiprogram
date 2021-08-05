@@ -1,0 +1,2 @@
+/* day.wxss */
+@import './base/list.wxss';

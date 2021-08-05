@@ -1,0 +1,2 @@
+/* year.wxss */
+@import './base/list.wxss';

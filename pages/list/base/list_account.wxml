@@ -1,0 +1,52 @@
+  <!-- 记账入口按钮 -->
+  <template name="account_button">
+    <view class="weui-cells weui-cells_after-title" style="margin-top: 12px;">
+      <navigator url="../main/add" open-type="switchTab" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">{{text}}</view>
+        <view class="weui-cell__ft">
+          <text style="color: #ffc107">记一笔</text>
+          <span class="iconfont icon-gengduo1" style="font-size:18px; color: #ffc107"></span>
+        </view>
+      </navigator>
+    </view>
+    <!-- 广告显示 -->
+    <!-- <view style="margin-top:12px;" hidden="{{getApp().AdFunctionConfig.enable == false}}">
+      <ad unit-id="adunit-bfe68df45d61cc37" ad-intervals="30"></ad>
+    </view> -->
+  </template>
+
+  <!--列表页账单-->
+  <template name="account_list">
+    <view wx:for="{{arrList}}" wx:key="key">
+      <view wx:if="{{item.isTitle}}" class="weui-cells__title">
+        <view class="weui-flex">
+          <view class="weui-flex__item">
+            <view class="list-header-left">{{item.date}}</view>
+          </view>
+          <view class="weui-flex__item">
+            <view class="list-header-right">合计：{{item.overMoney}}元</view>
+          </view>
+        </view>
+      </view>
+
+      <view wx:else class="weui-cells weui-cells_after-title">
+        <navigator url="./edit?id={{item.id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+
+          <!--<view class="weui-cell">-->
+          <view class="weui-cell__hd weui-icon">
+            <image wx:if="{{item.type == '收入'}}" class="weui-icon-in" lazy-load="true" src="../../image/icon_class/{{item.icon}}" />
+            <image wx:else class="weui-icon-out" lazy-load="true" src="../../image/icon_class/{{item.icon}}" />
+          </view>
+          <view class="weui-cell__bd">
+            <view class="list-item-title">{{item.class}}</view>
+            <view class="list-item-mark mark-text">{{item.mark}}</view>
+          </view>
+          <view class="weui-cell__ft">
+            <view wx:if="{{item.type == '收入'}}" class="list-text-ft" style="color:#e51c23;">+{{item.money}}</view>
+            <view wx:else class="list-text-ft" style="color:#222;">-{{item.money}}</view>
+            <view hidden="{{isHiddenFunds}}" class="list-item-mark">{{item.funds}}</view>
+          </view>
+        </navigator>
+      </view>
+    </view>
+  </template>
